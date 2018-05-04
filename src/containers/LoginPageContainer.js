@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { loginUser } from '../actions/index';
+import { Redirect } from 'react-router-dom'
 import LoginPage from '../components/LoginPage';
 
 class LoginPageContainer extends Component {
@@ -10,13 +11,14 @@ class LoginPageContainer extends Component {
     }
     render() { 
         return ( 
-            <LoginPage />
+            <LoginPage/>
         );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
+        user: state.userReducer.user,
     };
 }
  

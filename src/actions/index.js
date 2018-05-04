@@ -27,7 +27,6 @@ export function signupUser(user_info) {
         if (data.data) {
             console.log('user created success',  data.data);
             dispatch(signupUserSuccess(data.data));
-            history.push('/');
         } 
     }
 }

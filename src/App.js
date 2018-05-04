@@ -1,17 +1,21 @@
 import React, { Component, Fragment } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import LoginPageContainer from './containers/LoginPageContainer';
 import MainPageContainer from './containers/MainPageContainer';
 import SignupPageContainer from './containers/SignupPageContainer';
-import { Route } from 'react-router-dom';
+import PrivateRoute from './containers/PrivateRoute';
+import GuestRoute from './containers/GuestRoute';
 import './styles/App.css';
 
 class App extends Component {
   render() {
     return (
       <Fragment>
-        <Route path="/login" component={LoginPageContainer} />
-        <Route path="/signup" component={SignupPageContainer} />
-        <Route exact path="/" component={MainPageContainer} />
+        <Switch>
+          <GuestRoute path="/login" component={LoginPageContainer} />
+          <GuestRoute path="/signup" component={SignupPageContainer} />
+          <PrivateRoute exact path="/" component={MainPageContainer}/>
+        </Switch>
       </Fragment>
     );
   }
