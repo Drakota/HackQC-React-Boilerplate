@@ -18,16 +18,17 @@ export function loginUser(username, password) {
     }
 }
 
-export function signupUser(user_info) {
+export function signupUser(values) {
     return async (dispatch) => {
-        var data = await axios.post('https://reqres.in/api/users', {
-            name: user_info.email,
-            job: user_info.password
-        });
-        if (data.data) {
-            console.log('user created success',  data.data);
-            dispatch(signupUserSuccess(data.data));
-        } 
+        var params = new URLSearchParams();
+        params.append('firstName', values.first_name);
+        params.append('lastName', values.last_name);
+        params.append('email', values.email);
+        params.append('password', values.password);
+        var data = await axios.post('/users', params);
+        if(!data.errors) {
+            dispatch(signupUserSuccess);
+        }
     }
 }
 

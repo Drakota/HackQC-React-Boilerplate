@@ -19,21 +19,11 @@ class SignupPageContainer extends Component {
     }
 
     signupUser = (values) => {
-        var params = new URLSearchParams();
-        params.append('firstName', values.first_name);
-        params.append('lastName', values.last_name);
-        params.append('email', values.email);
-        params.append('password', values.password);
-        axios.post('/users', params)
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        this.props.signupUser(values);
     }
 
     render() { 
+        console.log(this.state);
         return ( 
             <SignupPage
                 handleEmailChange={this.handleEmailChange}
