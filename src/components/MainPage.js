@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Drawer from 'react-drag-drawer';
+import MapContainer from '../containers/MapContainer';
 import Avatar from 'react-avatar';
-import MapComponent from './MapComponent';
 import { Button, Layout, Menu, Icon } from 'antd';
 const { Header, Sider } = Layout;
 
@@ -40,12 +40,7 @@ class MainPage extends Component {
                             onClick={this.props.toggleSidebar}
                         />
                     </Header>
-                    <MapComponent
-                        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVb99HgTAxKCABiclsF0X7uzoLCN3JnLQ&v=3.exp&libraries=geometry,drawing,places"
-                        loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `100%` }} />}
-                        mapElement={<div style={{ height: `88.5vh` }} />}
-                    />
+                    <MapContainer />
                     <div onClick={this.props.toggleDrawer} className={"bottom-drawer"}> 
                         <Button onClick={this.test} className={"go-button"} type="primary">GO</Button>  
                     </div>

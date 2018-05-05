@@ -37,6 +37,11 @@ export const toggleSidebar = (bool) => ({
     payload: bool
 });
 
+export const genDirections = (directions) => ({
+    type: 'GENERATE_DIRECTIONS',
+    payload: directions
+});
+
 export function loginUser(email, password) {
     return async (dispatch) => {
         dispatch(loginUserPending(true));
@@ -81,7 +86,7 @@ export function signupUser(values) {
 export function logoutUser(token) {
     return async (dispatch) => {
         const instance = axios.create({
-            baseURL: 'http://10.212.32.61:3000/',
+            baseURL: '/',
             timeout: 1000,
             headers: {'Authorization': 'Bearer ' + token}
           });
@@ -94,6 +99,32 @@ export function logoutUser(token) {
           .catch(() => {
             message.success('A bug has occured while trying to log you out. Please try again later!');
           });
+    }
+}
+
+export function generateDirections(google, coords) {
+    return async (dispatch) => {        
+        const DirectionsService = new google.maps.DirectionsService();
+        DirectionsService.route({
+        origin: new google.maps.LatLng(coords.latitude, coords.longitude),
+        destination: new google.maps.LatLng(41.8525800, -87.6514100),
+        waypoints: [
+                {
+                    location: new google.maps.LatLng(41.8507300, -87.6512600)
+                },
+                {
+                    location: new google.maps.LatLng(41.8525800, -87.6514100)
+                }
+        ],
+        travelMode: google.maps.TravelMode.WALKING,
+        }, (result, status) => {
+            if (status === google.maps.DirectionsStatus.OK) {
+                dispatch(genDirections(result));
+            } else {
+                console.error(`error fetching directions ${result}`);
+            }
+        });
+        
     }
 }
 
