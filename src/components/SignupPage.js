@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import { Form, Icon, Input, Button, Checkbox, Card } from 'antd';
-import {Helmet} from "react-helmet";
+import { Form, Icon, Input, Button, Card } from 'antd';
+import { Helmet } from "react-helmet";
 
 const FormItem = Form.Item;
 
@@ -28,8 +28,8 @@ class SignUp extends React.Component {
     return (
         <Fragment>
         <Helmet bodyAttributes={{style: 'background-color : #454f58'}}/>
-        <Card className="centerElement signUpCard" title="Sign Up to eGOlogique" bordered={true}>
-            <Form onSubmit={this.handleSubmit} className="login-form">
+        <Card className="centerElement signUpCard" title="Sign up for eGOlogique" extra={<a href="/login">Back to login</a>} bordered={true}>
+            <Form onSubmit={this.handleSubmit} className="">
                 <FormItem>
                 {getFieldDecorator('first_name', {
                     rules: [

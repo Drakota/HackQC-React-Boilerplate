@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import SignupPage from '../components/SignupPage';
 import { signupUser } from '../actions';
-import axios from 'axios';
 
 class SignupPageContainer extends Component {
     constructor(props) {

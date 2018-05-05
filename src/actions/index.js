@@ -22,6 +22,11 @@ export const signupUserSuccess = (user) => ({
     payload: user
 });
 
+export const logoutUserSuccess = () => ({
+    type: 'LOGOUT_USER_SUCCESS',
+    payload: ''
+});
+
 export const toggleDrawer = (bool) => ({
     type: 'TOGGLE_DRAWER',
     payload: bool
@@ -65,6 +70,21 @@ export function signupUser(values) {
                 }
             });
 
+    }
+}
+
+export function logoutUser(token) {
+    return async (dispatch) => {
+        const instance = axios.create({
+            baseURL: 'http://10.212.32.61:3000/',
+            timeout: 1000,
+            headers: {'Authorization': 'Bearer ' + token}
+          });
+
+          var data = await instance.delete('/users/logout');
+          if (data) {
+              dispatch(logoutUserSuccess());
+          }
     }
 }
 

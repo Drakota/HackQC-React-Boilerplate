@@ -147,3 +147,9 @@ body {
 .ant-card-head {
   background-color: rgba(255,255,255,0.9) !important;
 }
+
+.fullHeightAndWidth {
+  width: 100vw;
+  height: 100vh;
+}
+
