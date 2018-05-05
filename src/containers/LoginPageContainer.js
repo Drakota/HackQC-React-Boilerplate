@@ -7,7 +7,7 @@ import LoginPage from '../components/LoginPage';
 class LoginPageContainer extends Component {
     constructor(props) {
         super(props);
-        this.props.loginUser("", "");
+
     }
     render() { 
         return ( 

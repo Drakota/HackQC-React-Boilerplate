@@ -5,6 +5,7 @@ import MainPageContainer from './containers/MainPageContainer';
 import SignupPageContainer from './containers/SignupPageContainer';
 import PrivateRoute from './containers/PrivateRoute';
 import GuestRoute from './containers/GuestRoute';
+import 'antd/dist/antd.css';
 import './styles/App.css';
 
 class App extends Component {
