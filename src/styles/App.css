@@ -130,3 +130,20 @@ body {
     border-top-right-radius: 8px;
   }
 }
+.centerElement {
+  margin: 0 auto;
+}
+
+.signUpCard {
+  background-color: rgba(255,255,255,0.9);
+  margin-top: 15vh;
+  width: 90vw;
+}
+
+.signUpButton {
+  float: right;
+}
+
+.ant-card-head {
+  background-color: rgba(255,255,255,0.9) !important;
+}
