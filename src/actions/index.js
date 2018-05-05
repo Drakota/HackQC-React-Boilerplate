@@ -91,10 +91,14 @@ export function logoutUser(token) {
             headers: {'Authorization': 'Bearer ' + token}
           });
 
-          var data = await instance.delete('/users/logout');
-          if (data) {
-              dispatch(logoutUserSuccess());
-          }
+        instance.delete('/users/logout')
+          .then((data) => {
+            message.success('You have been logged out!')
+            dispatch(logoutUserSuccess());
+          })
+          .catch(() => {
+            message.success('A bug has occured while trying to log you out. Please try again later!');
+          });
     }
 }
 
