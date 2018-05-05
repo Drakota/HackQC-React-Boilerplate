@@ -13,7 +13,7 @@ class MapContainer extends Component {
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVb99HgTAxKCABiclsF0X7uzoLCN3JnLQ&v=3.exp&libraries=geometry,drawing,places"
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `100%` }} />}
-                    mapElement={<div style={{ height: `88.5vh` }} />}
+                    mapElement={<div className={"map-element"} />}
                     generateDirections={this.props.generateDirections}
                     directions={this.props.directions}
                     coords={this.props.coords}
