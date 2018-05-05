@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
@@ -36,7 +36,7 @@ class LoginPage extends Component {
                     eGOlogie
                     <hr/>
                     <br/>
-                    <Form onSubmit={this.handleSubmit} className="login-form">
+                    <Form onSubmit={this.handleSubmit} className="">
                         <FormItem>
                         {getFieldDecorator('email', {
                             rules: [{ required: true, message: 'Please input your email!' }],
@@ -62,7 +62,7 @@ class LoginPage extends Component {
                         <Button loading={this.props.loginPending} type="primary" htmlType="submit" className="login-form-button">
                             Log in
                         </Button>
-                        Or <a href="">register now!</a>
+                        Or <a href="/signup">register now!</a>
                         </FormItem>
                     </Form>
                 </Card>

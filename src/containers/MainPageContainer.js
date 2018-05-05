@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import MainPage from '../components/MainPage';
-import { toggleDrawer } from '../actions/index';
+import { toggleDrawer, logoutUser } from '../actions/index';
 
 
 class MainPageContainer extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
-        
+     
     }
 
     toggleDrawer = () => {
         this.props.toggleDrawer(!this.props.toggle_drawer)
+    }
+
+    logoutUser = () => {
+        this.props.logoutUser(this.props.user.token);
     }
 
     render() {
@@ -22,6 +24,7 @@ class MainPageContainer extends Component {
                 toggleDrawer={this.toggleDrawer}
                 drawerIsToggled={this.props.toggle_drawer} 
                 user={this.props.user} 
+                logoutUser={this.logoutUser}
             />
         );
     }
@@ -37,6 +40,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         toggleDrawer: (bool) => dispatch(toggleDrawer(bool)),
+        logoutUser: (data) => dispatch(logoutUser(data))
     };
 }
  

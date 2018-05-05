@@ -168,3 +168,9 @@ body {
   float: right;
   margin: 15px;
 }
+
+.fullHeightAndWidth {
+  width: 100vw;
+  height: 100vh;
+}
+
