@@ -22,8 +22,18 @@ export const signupUserSuccess = (user) => ({
     payload: user
 });
 
+export const logoutUserSuccess = () => ({
+    type: 'LOGOUT_USER_SUCCESS',
+    payload: ''
+});
+
 export const toggleDrawer = (bool) => ({
     type: 'TOGGLE_DRAWER',
+    payload: bool
+});
+
+export const toggleSidebar = (bool) => ({
+    type: 'TOGGLE_SIDEBAR',
     payload: bool
 });
 
@@ -44,16 +54,42 @@ export function loginUser(email, password) {
     }
 }
 
-export function signupUser(user_info) {
+export function signupUser(values) {
     return async (dispatch) => {
-        var data = await axios.post('https://reqres.in/api/users', {
-            name: user_info.email,
-            job: user_info.password
-        });
-        if (data.data) {
-            console.log('user created success',  data.data);
-            dispatch(signupUserSuccess(data.data));
-        } 
+        var params = new URLSearchParams();
+        params.append('firstName', values.first_name);
+        params.append('lastName', values.last_name);
+        params.append('email', values.email);
+        params.append('password', values.password);
+        axios.post('/users', params)
+            .then((data) => {
+                message.success('You are signed up and logged in!');
+                dispatch(signupUserSuccess(data));
+            })
+            .catch((error) => {
+                if(error.response.data.errors.email) {
+                    message.error('The email you entered is already in use!');
+                }
+                else {
+                    message.error('Oopsie daisy');
+                }
+            });
+
+    }
+}
+
+export function logoutUser(token) {
+    return async (dispatch) => {
+        const instance = axios.create({
+            baseURL: 'http://10.212.32.61:3000/',
+            timeout: 1000,
+            headers: {'Authorization': 'Bearer ' + token}
+          });
+
+          var data = await instance.delete('/users/logout');
+          if (data) {
+              dispatch(logoutUserSuccess());
+          }
     }
 }
 
