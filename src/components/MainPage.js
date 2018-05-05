@@ -4,18 +4,9 @@ import MapComponent from './MapComponent';
 import { Button, Layout, Menu, Icon } from 'antd';
 const { Header, Sider } = Layout;
 
-
-const { Header, Sider } = Layout;
-
 class MainPage extends Component {
     constructor(props) {
         super(props);
-    }
-
-    toggle = () => {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        });
     }
 
     render() { 
@@ -24,7 +15,7 @@ class MainPage extends Component {
                 <Sider
                  trigger={null}
                  collapsible
-                 collapsed={this.state.collapsed}
+                 collapsed={this.props.sidebarIsToggled}
                  width={0}
                 >
                     <Layout>
@@ -35,8 +26,8 @@ class MainPage extends Component {
                     <Header style={{ background: '#fff', padding: 0 }}>
                         <Icon
                             className="trigger"
-                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                            onClick={this.toggle}
+                            type={this.props.sidebarIsToggled ? 'menu-unfold' : 'menu-fold'}
+                            onClick={this.props.toggleSidebar}
                             style={{ marginLeft: 15 }}
                         />
                     </Header>

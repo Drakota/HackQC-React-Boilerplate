@@ -32,6 +32,11 @@ export const toggleDrawer = (bool) => ({
     payload: bool
 });
 
+export const toggleSidebar = (bool) => ({
+    type: 'TOGGLE_SIDEBAR',
+    payload: bool
+});
+
 export function loginUser(email, password) {
     return async (dispatch) => {
         dispatch(loginUserPending(true));
