@@ -1,9 +1,20 @@
 import axios from 'axios';
 import { history } from '../index';
+import { message } from 'antd';
 
 export const loginUserSuccess = (user) => ({
     type: 'LOGIN_USER_SUCCESS',
     payload: user
+});
+
+export const loginUserFailure = (bool) => ({
+    type: 'LOGIN_USER_FAILURE',
+    payload: bool
+});
+
+export const loginUserPending = (bool) => ({
+    type: 'LOGIN_USER_PENDING',
+    payload: bool
 });
 
 export const signupUserSuccess = (user) => ({
@@ -11,10 +22,25 @@ export const signupUserSuccess = (user) => ({
     payload: user
 });
 
-export function loginUser(username, password) {
+export const toggleDrawer = (bool) => ({
+    type: 'TOGGLE_DRAWER',
+    payload: bool
+});
+
+export function loginUser(email, password) {
     return async (dispatch) => {
-        var data = await axios('https://randomuser.me/api');
-        dispatch(loginUserSuccess(data.data.results[0]));
+        dispatch(loginUserPending(true));
+        var params = new URLSearchParams();
+        params.append('email', email);
+        params.append('password', password);
+        try {
+            var payload = await axios.post('/users/login', params);
+            message.success('You are logged in!');
+            dispatch(loginUserSuccess(payload.data));
+        } catch (error) {
+            dispatch(loginUserPending(false));
+            dispatch(loginUserFailure(true));
+        }
     }
 }
 
