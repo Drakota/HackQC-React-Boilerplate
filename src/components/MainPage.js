@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
 import Drawer from 'react-drag-drawer';
-import { Layout, Menu, Icon } from 'antd';
-
-
+import MapComponent from './MapComponent';
+import { Button, Layout, Menu, Icon } from 'antd';
 const { Header, Sider } = Layout;
 
 class MainPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            collapsed: false,
-          };
-    }
-
-    toggle = () => {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        });
     }
 
     render() { 
@@ -25,7 +15,7 @@ class MainPage extends Component {
                 <Sider
                  trigger={null}
                  collapsible
-                 collapsed={this.state.collapsed}
+                 collapsed={this.props.sidebarIsToggled}
                  width={0}
                 >
                     <Layout>
@@ -36,12 +26,20 @@ class MainPage extends Component {
                     <Header style={{ background: '#fff', padding: 0 }}>
                         <Icon
                             className="trigger"
-                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                            onClick={this.toggle}
+                            type={this.props.sidebarIsToggled ? 'menu-unfold' : 'menu-fold'}
+                            onClick={this.props.toggleSidebar}
                             style={{ marginLeft: 15 }}
                         />
                     </Header>
-                    <button onClick={this.props.toggleDrawer}>Test</button>
+                    <MapComponent
+                        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVb99HgTAxKCABiclsF0X7uzoLCN3JnLQ&v=3.exp&libraries=geometry,drawing,places"
+                        loadingElement={<div style={{ height: `100%` }} />}
+                        containerElement={<div style={{ height: `100%` }} />}
+                        mapElement={<div style={{ height: `88.5vh` }} />}
+                    />
+                    <div onClick={this.props.toggleDrawer} className={"bottom-drawer"}> 
+                        <Button onClick={this.test} className={"go-button"} type="primary">GO</Button>  
+                    </div>
                     <Drawer
                         open={this.props.drawerIsToggled}
                         onRequestClose={this.props.toggleDrawer}
