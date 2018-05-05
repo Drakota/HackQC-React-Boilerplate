@@ -3,12 +3,18 @@ import Drawer from 'react-drag-drawer';
 import MapContainer from '../containers/MapContainer';
 import Avatar from 'react-avatar';
 import MapComponent from './MapComponent';
-import { Button, Layout, Menu, Icon, Slider } from 'antd';
+import { Button, Layout, Menu, Icon, Slider, Radio } from 'antd';
 const { Header, Sider } = Layout;
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
 class MainPage extends Component {
     constructor(props) {
         super(props);
+    }
+
+    onRadioChange = (e) => {
+        this.setState({ category: e.target.value });
     }
 
     onChange = (value) => {
@@ -29,9 +35,17 @@ class MainPage extends Component {
             // <div onClick={this.props.toggleDrawer} className={"bottom-drawer"}> 
             <div className={"bottom-drawer"}> 
                 <h3 style={{ textAlign: 'center', fontSize: 18 }} >Create a Rally!</h3>
-                <p style={{ textAlign: 'center' }}>Choose a range and have fun! </p>
+                <p style={{ textAlign: 'center' }}>Choose a range, where you want to visit and have fun! </p>
+                <div style={{ textAlign: 'center' }} >
+                    <RadioGroup onChange={this.onRadioChange} className="centerElement" defaultValue="a" size="small">
+                        <RadioButton value="a">Parks</RadioButton>
+                        <RadioButton value="b">Gardens</RadioButton>
+                        <RadioButton value="c">Ecoterritories</RadioButton>
+                        <RadioButton value="d">Collection Points</RadioButton>
+                    </RadioGroup>
+                </div>
                 <div style={{ display: 'flex' }}>
-                    <Slider style={{ flex: 2, alignSelf: 'center', marginBottom: 20, }} min={5} max={20} onChange={this.onChange}/>
+                    <Slider style={{ flex: 2, alignSelf: 'center', marginBottom: 20, }} min={2} max={10} onChange={this.onChange}/>
                     <Button style={{ flex: 1 }} onClick={this.test} className={"go-button"} type="primary">GO</Button>  
                 </div>
             </div>
@@ -39,6 +53,7 @@ class MainPage extends Component {
     }
 
     render() { 
+        console.log(this.state);
         return (
             <Layout className="fullHeightAndWidth">
                 <Sider
