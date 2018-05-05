@@ -1,3 +1,13 @@
+body,
+html{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+body {
+  position: relative;
+}
+
 .App {
   text-align: center;
 }
@@ -25,4 +35,115 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/*Mobile*/
+@media only screen and (max-width: 600px) {
+  .login-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+  
+  .login-wrapper {
+    overflow: hidden;
+  }
+
+  .login-card {
+    width: 90vw;
+    height: 70vh;
+  }
+}
+
+/*Desktop*/
+@media only screen and (min-width: 600px) {
+  .login-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: auto;
+    width: 100vw;
+  }
+  
+  .login-wrapper {
+    overflow: hidden;
+  }
+
+  .login-card {
+    width: 40vw;
+    height: 50vh;
+  }
+}
+
+.login-filter {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(47, 79, 79, 0.4);
+}
+
+.login-card {
+  margin: 0 auto;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+}
+
+.login-form {
+  max-width: 300px;
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
+
+.modal {
+  outline: none;
+  background: white;
+  font-size: 1.6rem;
+  width: 76rem;
+  max-width: 90%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  z-index: 15;
+  min-height: 47rem;
+ 
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+ 
+@media (max-width: 768px) {
+  .modal {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+}
+.centerElement {
+  margin: 0 auto;
+}
+
+.signUpCard {
+  background-color: rgba(255,255,255,0.9);
+  margin-top: 15vh;
+  width: 90vw;
+}
+
+.signUpButton {
+  float: right;
+}
+
+.ant-card-head {
+  background-color: rgba(255,255,255,0.9) !important;
 }
