@@ -206,3 +206,6 @@ body {
   padding: 15px;
 }
 
+.map-element {
+  height: calc(100vh - 75px);
+}

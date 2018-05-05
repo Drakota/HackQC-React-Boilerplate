@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { history } from '../index';
 import { message } from 'antd';
+import { store } from '../index';
 
 export const loginUserSuccess = (user) => ({
     type: 'LOGIN_USER_SUCCESS',
@@ -89,7 +90,7 @@ export function logoutUser(token) {
             baseURL: '/',
             timeout: 1000,
             headers: {'Authorization': 'Bearer ' + token}
-          });
+        });
 
         instance.delete('/users/logout')
           .then((data) => {
@@ -103,20 +104,37 @@ export function logoutUser(token) {
 }
 
 export function generateDirections(google, coords) {
-    return async (dispatch) => {        
+    return async (dispatch) => {
+        const instance = axios.create({
+            baseURL: '/',
+            headers: {'Authorization': `Bearer ${store.getState().userReducer.user.token}`}
+        });
+        var params = new URLSearchParams();
+        params.append('lat', coords.latitude);
+        params.append('lng', coords.longitude);
+        params.append('range', 5000);
+        const payload = await instance.post('/map/gencoords', params);
+        
         const DirectionsService = new google.maps.DirectionsService();
         DirectionsService.route({
         origin: new google.maps.LatLng(coords.latitude, coords.longitude),
-        destination: new google.maps.LatLng(41.8525800, -87.6514100),
+        destination: new google.maps.LatLng(payload.data.data[4].coords[1], payload.data.data[4].coords[0]),
         waypoints: [
                 {
-                    location: new google.maps.LatLng(41.8507300, -87.6512600)
+                    location: new google.maps.LatLng(payload.data.data[0].coords[1], payload.data.data[0].coords[0])
                 },
                 {
-                    location: new google.maps.LatLng(41.8525800, -87.6514100)
+                    location: new google.maps.LatLng(payload.data.data[1].coords[1], payload.data.data[1].coords[0])
+                },
+                {
+                    location: new google.maps.LatLng(payload.data.data[2].coords[1], payload.data.data[2].coords[0])
+                },
+                {
+                    location: new google.maps.LatLng(payload.data.data[3].coords[1], payload.data.data[3].coords[0])
                 }
         ],
         travelMode: google.maps.TravelMode.WALKING,
+        optimizeWaypoints: true,
         }, (result, status) => {
             if (status === google.maps.DirectionsStatus.OK) {
                 dispatch(genDirections(result));
@@ -124,7 +142,6 @@ export function generateDirections(google, coords) {
                 console.error(`error fetching directions ${result}`);
             }
         });
-        
     }
 }
 
