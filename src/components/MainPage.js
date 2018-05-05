@@ -37,11 +37,11 @@ class MainPage extends Component {
                 <h3 style={{ textAlign: 'center', fontSize: 18 }} >Create a Rally!</h3>
                 <p style={{ textAlign: 'center' }}>Choose a range, where you want to visit and have fun! </p>
                 <div style={{ textAlign: 'center' }} >
-                    <RadioGroup onChange={this.onRadioChange} className="centerElement" defaultValue="a" size="small">
-                        <RadioButton value="a">Parks</RadioButton>
-                        <RadioButton value="b">Gardens</RadioButton>
-                        <RadioButton value="c">Ecoterritories</RadioButton>
-                        <RadioButton value="d">Collection Points</RadioButton>
+                    <RadioGroup onChange={this.onRadioChange} className="centerElement" defaultValue="1" size="small">
+                        <RadioButton value="1">Parks</RadioButton>
+                        <RadioButton value="2">Gardens</RadioButton>
+                        <RadioButton value="3">Ecoterritories</RadioButton>
+                        <RadioButton value="4">Collection Points</RadioButton>
                     </RadioGroup>
                 </div>
                 <div style={{ display: 'flex' }}>
