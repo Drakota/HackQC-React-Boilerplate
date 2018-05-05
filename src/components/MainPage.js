@@ -3,12 +3,39 @@ import Drawer from 'react-drag-drawer';
 import MapContainer from '../containers/MapContainer';
 import Avatar from 'react-avatar';
 import MapComponent from './MapComponent';
-import { Button, Layout, Menu, Icon } from 'antd';
+import { Button, Layout, Menu, Icon, Slider } from 'antd';
 const { Header, Sider } = Layout;
 
 class MainPage extends Component {
     constructor(props) {
         super(props);
+    }
+
+    onChange = (value) => {
+        this.setState({ range: value });
+    }
+
+    showCreateRally = () => {
+
+        if (this.props.activities) {
+            return (
+                <div onClick={this.props.toggleDrawer} className={"bottom-drawer"}> 
+                    <h3 style={{ textAlign: 'center', fontSize: 18 }} >Click here for details on your rally</h3>
+                </div>
+            );
+        }
+
+        return (
+            // <div onClick={this.props.toggleDrawer} className={"bottom-drawer"}> 
+            <div className={"bottom-drawer"}> 
+                <h3 style={{ textAlign: 'center', fontSize: 18 }} >Create a Rally!</h3>
+                <p style={{ textAlign: 'center' }}>Choose a range and have fun! </p>
+                <div style={{ display: 'flex' }}>
+                    <Slider style={{ flex: 2, alignSelf: 'center', marginBottom: 20, }} min={5} max={20} onChange={this.onChange}/>
+                    <Button style={{ flex: 1 }} onClick={this.test} className={"go-button"} type="primary">GO</Button>  
+                </div>
+            </div>
+        );
     }
 
     render() { 
@@ -42,9 +69,7 @@ class MainPage extends Component {
                         />
                     </Header>
                     <MapContainer />
-                    <div onClick={this.props.toggleDrawer} className={"bottom-drawer"}> 
-                        <Button onClick={this.test} className={"go-button"} type="primary">GO</Button>  
-                    </div>
+                    {this.showCreateRally()}
                     <Drawer
                         open={this.props.drawerIsToggled}
                         onRequestClose={this.props.toggleDrawer}

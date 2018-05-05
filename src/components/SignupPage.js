@@ -28,6 +28,11 @@ class SignUp extends React.Component {
     return (
         <Fragment>
         <Helmet bodyAttributes={{style: 'background-color : #454f58'}}/>
+        <video id="background-video" className={"login-video"} loop autoPlay>
+                    <source src="/Forest-Lullaby.mp4" type="video/mp4" />
+                    Your browser does not support the video tag. 
+        </video>
+        <div className={"login-filter"}/>
         <Card className="centerElement signUpCard" title="Sign up for eGOlogique" extra={<a href="/login">Back to login</a>} bordered={true}>
             <Form onSubmit={this.handleSubmit} className="">
                 <FormItem>
