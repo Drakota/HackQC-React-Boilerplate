@@ -174,32 +174,3 @@ body {
   height: 100vh;
 }
 
-.hamburger {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  z-index: 1;
-  border-radius: 5px;
-  height: 40px;
-  line-height: 40px;
-  margin-top: 15px;
-  margin-left: 15px;
-  background: white; 
-  padding: 0;
-  transition: 0.1s margin-left;
-  transition-timing-function: linear;
-}
-
-.hamburgerIcon {
-  padding: 5px 15px 5px 15px;
-}
-
-.openSidebar {
-  margin-left: 265px;
-}
-
-.layoutStyle {
-  border-bottom: 1px solid rgba(0,0,0,0.5);
-  padding: 15px;
-}
-
