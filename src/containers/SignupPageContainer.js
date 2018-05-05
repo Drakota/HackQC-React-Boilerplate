@@ -23,7 +23,6 @@ class SignupPageContainer extends Component {
     }
 
     render() { 
-        console.log(this.state);
         return ( 
             <SignupPage
                 handleEmailChange={this.handleEmailChange}

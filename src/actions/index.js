@@ -51,10 +51,20 @@ export function signupUser(values) {
         params.append('lastName', values.last_name);
         params.append('email', values.email);
         params.append('password', values.password);
-        var data = await axios.post('/users', params);
-        if(!data.errors) {
-            dispatch(signupUserSuccess);
-        }
+        axios.post('/users', params)
+            .then((data) => {
+                message.success('You are signed up and logged in!');
+                dispatch(signupUserSuccess(data));
+            })
+            .catch((error) => {
+                if(error.response.data.errors.email) {
+                    message.error('The email you entered is already in use!');
+                }
+                else {
+                    message.error('Oopsie daisy');
+                }
+            });
+
     }
 }
 
