@@ -4,11 +4,11 @@
   "private": true,
   "proxy": "http://10.212.32.61:3000/",
   "dependencies": {
-    "antd": "^3.4.4",
+    "antd": "^3.5.0",
     "axios": "^0.18.0",
     "history": "^4.7.2",
     "lodash": "^4.17.10",
-    "mapbox": "^1.0.0-beta10",
+    "mapbox": "^1.0.0-beta9",
     "mapbox-gl": "^0.45.0-beta.1",
     "react": "^16.3.2",
     "react-avatar": "^2.5.1",
