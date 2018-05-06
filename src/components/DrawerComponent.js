@@ -13,7 +13,7 @@ class DrawerComponent extends Component {
                 <div className={"handle"}></div>
                 <img className={"current-image"} src={this.props.current_activity.info.image} />
                 <span className={"current-address"}>{this.props.current_activity.info.address}</span>
-                <Button type="primary" className={"current-next-button"}>Next</Button>  
+                <Button type="primary" onClick={this.props.handleNextClick} className={"current-next-button"}>Next</Button>  
             </div>
         );
     }

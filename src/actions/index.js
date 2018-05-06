@@ -61,6 +61,13 @@ export const changeCurrentActivity = (activity) => ({
     payload: activity
 });
 
+export const setUserArrived = () => ({
+    type: 'SET_USER_ARRIVED',
+});
+
+export const setUserNextDestination = () => ({
+    type: 'SET_USER_TO_NEXT_DESTINATION',
+});
 
 export function loginUser(email, password) {
     return async (dispatch) => {

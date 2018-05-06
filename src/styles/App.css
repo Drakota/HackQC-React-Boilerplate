@@ -254,3 +254,18 @@ body {
   width: 35px;
   margin: 0 auto;
 }
+
+.leaderboardDiv {
+  text-align: center;
+  border-bottom: black 1px solid;
+  padding: 10px;
+}
+
+.leaderboardUl {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.ant-card-head-title {
+  text-align: center;
+}
