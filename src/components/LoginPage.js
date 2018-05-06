@@ -31,10 +31,9 @@ class LoginPage extends Component {
                 </video>
                 <div className={"login-filter"}/>
                 <Card className={"login-card"}>
-                    eGOlogie
-                    <div className="handle"></div>
-                    <hr/>
-                    <br/>
+                    <div style={{ textAlign: 'center' }}>
+                        <img width="200" src="/egologique_transparent_image.png" />
+                    </div>
                     <Form onSubmit={this.handleSubmit} className="">
                         <FormItem>
                         {getFieldDecorator('email', {
@@ -57,7 +56,7 @@ class LoginPage extends Component {
                         })(
                             <Checkbox>Remember me</Checkbox>
                         )}
-                        <Button loading={this.props.loginPending} type="primary" htmlType="submit" className="login-form-button">
+                        <Button loading={this.props.loginPending} type="primary" htmlType="submit" className="login-form-button greenButton">
                             Log in
                         </Button>
                         Or <a href="/signup">register now!</a>

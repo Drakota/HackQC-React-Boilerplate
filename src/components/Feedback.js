@@ -15,6 +15,7 @@ class Feedback extends React.Component {
           visible={visible}
           title="Feedback"
           onOk={this.props.handleOk}
+          className={"modal-feedback"}
           onCancel={this.props.handleCancel}
           footer={[
             <Button key="back" onClick={this.props.handleCancel}>Return</Button>,
@@ -26,7 +27,7 @@ class Feedback extends React.Component {
            <div style={{ textAlign: 'center' }}>
            <h2>Your feedback is important to us.</h2>
            <p>What was the quantity of waste on the ground?</p>
-                <RadioGroup onChange={this.props.onChangeWaste} defaultValue="a">
+                <RadioGroup value={this.props.wasteChoice} onChange={this.props.onChangeWaste} defaultValue="a">
                     <RadioButton value="Very Few">Very few</RadioButton>
                     <RadioButton value="Some">Some</RadioButton>
                     <RadioButton value="A Lot">A lot</RadioButton>
@@ -35,18 +36,18 @@ class Feedback extends React.Component {
 
             <div style={{ textAlign: 'center', marginTop: 35}}>
             <p>How satisfied were you with the furniture in this location?</p>
-                <RadioGroup onChange={this.props.onChangeFurniture} defaultValue="a">
+                <RadioGroup value={this.props.furnitureChoice} onChange={this.props.onChangeFurniture} defaultValue="a">
                     <RadioButton value="Very Satified">Very Satisfied</RadioButton>
-                    <RadioButton value="Statisfied">Statisfied</RadioButton>
+                    <RadioButton value="Statisfied">Satisfied</RadioButton>
                     <RadioButton value="Unsatisfied">Unsatisfied</RadioButton>
                 </RadioGroup>
             </div>
 
             <div style={{ textAlign: 'center', marginTop: 35 }}>
             <p>How satisfied were you with the maintenance of this location?</p>
-                <RadioGroup onChange={this.props.onChangeMaintenance} defaultValue="a">
+                <RadioGroup value={this.props.maintenanceChoice} onChange={this.props.onChangeMaintenance} defaultValue="a">
                     <RadioButton value="Very Satified">Very Satisfied</RadioButton>
-                    <RadioButton value="Statisfied">Statisfied</RadioButton>
+                    <RadioButton value="Statisfied">Satisfied</RadioButton>
                     <RadioButton value="Unsatisfied">Unsatisfied</RadioButton>
                 </RadioGroup>
             </div>

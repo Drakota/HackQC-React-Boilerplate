@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DrawerComponent from '../components/DrawerComponent';
 import { connect } from "react-redux";
 import { notification } from 'antd';
-import { toggleDrawer, generateDirections, clearActivities, clearDirections, changeCurrentActivity } from '../actions/index';
+import { toggleDrawer, generateDirections, clearActivities, clearDirections, changeCurrentActivity, toggleModalFeedback, toggleLocationReviewed, toggleLocationNotReviewed } from '../actions/index';
 import { geolocated } from 'react-geolocated';
 import _ from 'lodash';
 
@@ -50,12 +50,19 @@ class DrawerContainer extends Component {
         this.props.generateDirections(this.props.coords, this.state.range, this.state.category);
     }
 
+    toggleReview = (event) => {
+        event.stopPropagation();
+        this.props.toggleModalFeedback(true);
+        this.props.toggleLocationReviewed(true);
+    }
+
     readyRally = (event) => {
         event.stopPropagation();
         if (!this.props.current_activity) {
             this.props.changeCurrentActivity(this.props.activities[0]);
         }
         else {
+            this.props.toggleLocationReviewed(false);
             const current_activity = this.props.current_activity;
             var index = this.props.activities.findIndex(function(activity) {
                 return _.isEqual(activity, current_activity);
@@ -78,7 +85,7 @@ class DrawerContainer extends Component {
 
     calculatePercentage = () => {
         const current_activity = this.props.current_activity;
-            if (this.props.activities) {
+        if (this.props.activities) {
             var index = this.props.activities.findIndex(function(activity) {
                 return _.isEqual(activity, current_activity);
             });
@@ -87,6 +94,17 @@ class DrawerContainer extends Component {
             });
                         
         }
+    }
+
+    finishButton = () => {
+        const current_activity = this.props.current_activity;
+        if (this.props.current_activity) {
+            var index = this.props.activities.findIndex(function(activity) {
+                return _.isEqual(activity, current_activity);
+            });            
+            return index + 1 === 5;
+        }
+        return false;
     }
 
     render() {
@@ -103,6 +121,9 @@ class DrawerContainer extends Component {
                 restartRally={this.restartRally}
                 cancelRally={this.cancelRally}
                 progress={this.state.progress}
+                reviewLocation={this.toggleReview}
+                locationReviewed={this.props.locationReviewed}
+                finishButton={this.finishButton}
             />
         );
     }
@@ -113,6 +134,7 @@ const mapStateToProps = (state) => {
         activities: state.activitiesReducer.activities,
         current_activity: state.activitiesReducer.current_activity,
         toggle_drawer: state.layoutReducer.toggle_drawer,
+        locationReviewed: state.layoutReducer.locationReviewed,
     };
 }
  
@@ -123,6 +145,8 @@ const mapDispatchToProps = (dispatch) => {
         clearActivities: () => dispatch(clearActivities()),
         clearDirections: () => dispatch(clearDirections()),
         changeCurrentActivity: (activity) => dispatch(changeCurrentActivity(activity)),
+        toggleModalFeedback: (activity) => dispatch(toggleModalFeedback(activity)),
+        toggleLocationReviewed: (bool) => dispatch(toggleLocationReviewed(bool)),
     };
 }
 

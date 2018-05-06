@@ -69,6 +69,22 @@ export const setUserNextDestination = () => ({
     type: 'SET_USER_TO_NEXT_DESTINATION',
 });
 
+export const toggleModalFeedback = () => ({
+    type: 'TOGGLE_MODAL_FEEDBACK',
+    payload: true
+});
+
+export const toggleHideModalFeedback = () => ({
+    type: 'TOGGLE_MODAL_FEEDBACK',
+    payload: false
+});
+
+export const toggleLocationReviewed = (bool) => ({
+    type: 'TOGGLE_REVIEW',
+    payload: bool
+});
+
+
 export function loginUser(email, password) {
     return async (dispatch) => {
         dispatch(loginUserPending(true));

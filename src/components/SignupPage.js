@@ -28,12 +28,13 @@ class SignUp extends React.Component {
     return (
         <Fragment>
         <Helmet bodyAttributes={{style: 'background-color : #454f58'}}/>
+        <div className={"login-filter"}/>
         <video id="background-video" className={"login-video"} loop autoPlay>
                     <source src="/Forest-Lullaby.mp4" type="video/mp4" />
                     Your browser does not support the video tag. 
         </video>
-        <div className={"login-filter"}/>
-        <Card className="centerElement signUpCard" title="Sign up for eGOlogique" extra={<a href="/login">Back to login</a>} bordered={true}>
+        
+        <Card className="centerElement signUpCard" title="Sign up for eGOlogic" extra={<a href="/login">Back to login</a>} bordered={true}>
             <Form onSubmit={this.handleSubmit} className="">
                 <FormItem>
                 {getFieldDecorator('first_name', {
@@ -76,7 +77,7 @@ class SignUp extends React.Component {
                 )}
                 </FormItem>
                 <FormItem>
-                <Button type="primary" htmlType="submit" className="login-form-button signUpButton">
+                <Button type="primary" htmlType="submit" className="login-form-button signUpButton greenButton">
                     Sign up
                 </Button>
                 </FormItem>
