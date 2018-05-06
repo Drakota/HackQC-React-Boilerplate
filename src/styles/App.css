@@ -52,7 +52,7 @@ body {
 
   .login-card {
     width: 90vw;
-    height: 70vh;
+    height: fit-content;
   }
 }
 

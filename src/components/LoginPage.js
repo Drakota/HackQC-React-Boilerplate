@@ -31,10 +31,9 @@ class LoginPage extends Component {
                 </video>
                 <div className={"login-filter"}/>
                 <Card className={"login-card"}>
-                    eGOlogie
-                    <div className="handle"></div>
-                    <hr/>
-                    <br/>
+                    <div style={{ textAlign: 'center' }}>
+                        <img width="200" src="/egologique_transparent_image.png" />
+                    </div>
                     <Form onSubmit={this.handleSubmit} className="">
                         <FormItem>
                         {getFieldDecorator('email', {
