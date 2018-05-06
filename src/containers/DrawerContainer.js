@@ -85,7 +85,7 @@ class DrawerContainer extends Component {
 
     calculatePercentage = () => {
         const current_activity = this.props.current_activity;
-            if (this.props.activities) {
+        if (this.props.activities) {
             var index = this.props.activities.findIndex(function(activity) {
                 return _.isEqual(activity, current_activity);
             });
@@ -94,6 +94,17 @@ class DrawerContainer extends Component {
             });
                         
         }
+    }
+
+    finishButton = () => {
+        const current_activity = this.props.current_activity;
+        if (this.props.current_activity) {
+            var index = this.props.activities.findIndex(function(activity) {
+                return _.isEqual(activity, current_activity);
+            });            
+            return index + 1 === 5;
+        }
+        return false;
     }
 
     render() {
@@ -112,6 +123,7 @@ class DrawerContainer extends Component {
                 progress={this.state.progress}
                 reviewLocation={this.toggleReview}
                 locationReviewed={this.props.locationReviewed}
+                finishButton={this.finishButton}
             />
         );
     }

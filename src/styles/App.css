@@ -240,9 +240,9 @@ body {
 }
 
 .current-next-button {
-  float: right;
-  margin-top: 7px;
-  margin-right: 2px;
+  position: absolute;
+  bottom: 13px;
+  right: 10px;
   height: 50px;
 }
 
@@ -295,10 +295,11 @@ body {
 .alert-drawer {
   float: left;
   margin: 10px;
-  max-width: 52%;
+  max-width: calc(100% - 180px);
   max-height: 52%;
   word-break: break-word;
 }
+
 .leaderboardDiv {
   text-align: center;
   border-bottom: black 1px solid;
@@ -317,4 +318,8 @@ body {
 .leaderboardLink {
   color: rgba(0, 0, 0, 0.65);
   text-decoration: none;
+}
+
+.modal-feedback {
+  
 }
