@@ -19,10 +19,10 @@ class DrawerComponent extends Component {
     }
     else if (this.props.activities) {
         return (
-            <div className={"bottom-drawer"}> 
+            <div className="bottom-drawer" style={{ textAlign: 'center' }}> 
                 <h3 style={{ textAlign: 'center', fontSize: 18 }} >You're ready to go!</h3>
                 <Button onClick={this.props.readyRally} type="success">Ready</Button>  
-                <Button onClick={this.props.restartRally} type="primary">Retry</Button>  
+                <Button onClick={this.props.restartRally} style={{ marginLeft: 10, marginRight: 10 }} type="primary">Retry</Button>  
                 <Button onClick={this.props.cancelRally} type="danger">Cancel</Button>  
             </div>
         );
