@@ -4,6 +4,7 @@ import Avatar from 'react-avatar';
 import { Button, Layout, Menu, Icon, Slider, Radio } from 'antd';
 import FeedbackContainer from '../containers/FeedbackContainer';
 import DrawerContainer from '../containers/DrawerContainer';
+import Feedback from './Feedback';
 const { Header, Sider } = Layout;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -45,6 +46,7 @@ class MainPage extends Component {
                             onClick={this.props.toggleSidebar}
                         />
                     </Header>
+                    <FeedbackContainer />
                     <MapContainer />
                     <DrawerContainer />
                 </Layout>

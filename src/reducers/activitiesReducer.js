@@ -1,6 +1,8 @@
 const initialState = {
     activities: null,
-    current_activity: null
+    current_activity: null,
+    modalVisibility: false,
+    activityAddress: ''
 }
 
 export const activitiesReducer = (state = initialState, action) => {
@@ -11,6 +13,8 @@ export const activitiesReducer = (state = initialState, action) => {
             return {...state, current_activity: action.payload}
         case "CLEAR_ACTIVITIES":
             return {...state, activities: null, current_activity: null}
+        case "TOGGLE_MODAL_FEEDBACK":
+            return {...state, modalVisibility: action.payload}
         default:
             return state;
     }
