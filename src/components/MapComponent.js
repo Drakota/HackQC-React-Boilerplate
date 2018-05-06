@@ -13,17 +13,15 @@ const defaultMapOptions = {
 
 class MapComponent extends Component {
 
-    componentDidMount() {
-        console.log(this.props.coords);
-        
+    componentDidMount() {     
         this.props.generateDirections(google, this.props.coords);
     }
 
     render() { 
         return (
             <GoogleMap
+                    {...this.props}
                     defaultOptions={defaultMapOptions}
-                    defaultCenter={new google.maps.LatLng(41.8507300, -87.6512600)}
                 >
                 {this.props.directions && <DirectionsRenderer options={{preserveViewport: false}} directions={this.props.directions} />}
             </GoogleMap>

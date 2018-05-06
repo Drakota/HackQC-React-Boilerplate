@@ -10,7 +10,7 @@ import createHistory from 'history/createBrowserHistory';
 import 'antd/dist/antd.css';
 
 export const history = createHistory();
-const {store, persistor} = configureStore(history);
+export const {store, persistor} = configureStore(history);
 
 ReactDOM.render(
     <Provider store={store}>
