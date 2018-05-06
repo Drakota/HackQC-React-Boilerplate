@@ -13,7 +13,7 @@ export const userReducer = (state = initialState, action) => {
         case "LOGIN_USER_FAILURE":
             return {...state, login_failed: action.payload}
         case "SIGNUP_USER_SUCCESS":
-            return {...state, user: action.payload}
+            return {...state, user: action.payload.user}
         case "LOGOUT_USER_SUCCESS":
             return {...state, user: action.payload, login_pending: false}
         default:

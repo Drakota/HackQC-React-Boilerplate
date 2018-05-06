@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import Drawer from 'react-drag-drawer';
 import MapContainer from '../containers/MapContainer';
 import Avatar from 'react-avatar';
-import { Button, Layout, Menu, Icon } from 'antd';
+import { Button, Layout, Menu, Icon, Slider, Radio } from 'antd';
+import FeedbackContainer from '../containers/FeedbackContainer';
+import DrawerContainer from '../containers/DrawerContainer';
 const { Header, Sider } = Layout;
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
 class MainPage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() { 
         return (
             <Layout className="fullHeightAndWidth">
@@ -41,16 +40,7 @@ class MainPage extends Component {
                         />
                     </Header>
                     <MapContainer />
-                    <div onClick={this.props.toggleDrawer} className={"bottom-drawer"}> 
-                        <Button onClick={this.test} className={"go-button"} type="primary">GO</Button>  
-                    </div>
-                    <Drawer
-                        open={this.props.drawerIsToggled}
-                        onRequestClose={this.props.toggleDrawer}
-                        modalElementClass={'modal'}
-                    >
-                        <div>Hey Im inside the drawer!</div>
-                    </Drawer>
+                    <DrawerContainer />
                 </Layout>
             </Layout>
         )

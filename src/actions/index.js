@@ -1,6 +1,7 @@
+/* global google */
 import axios from 'axios';
-import { history } from '../index';
 import { message } from 'antd';
+import { store } from '../index';
 
 export const loginUserSuccess = (user) => ({
     type: 'LOGIN_USER_SUCCESS',
@@ -41,6 +42,25 @@ export const genDirections = (directions) => ({
     type: 'GENERATE_DIRECTIONS',
     payload: directions
 });
+
+export const clearDirections = () => ({
+    type: 'CLEAR_DIRECTIONS',
+});
+
+export const addActivitiesSuccess = (activities) => ({
+    type: 'ADD_ACTIVITIES_SUCCESS',
+    payload: activities
+});
+
+export const clearActivities = () => ({
+    type: 'CLEAR_ACTIVITIES',
+});
+
+export const changeCurrentActivity = (activity) => ({
+    type: 'CHANGE_CURRENT_ACTIVITY',
+    payload: activity
+});
+
 
 export function loginUser(email, password) {
     return async (dispatch) => {
@@ -89,7 +109,7 @@ export function logoutUser(token) {
             baseURL: '/',
             timeout: 1000,
             headers: {'Authorization': 'Bearer ' + token}
-          });
+        });
 
         instance.delete('/users/logout')
           .then((data) => {
@@ -97,34 +117,64 @@ export function logoutUser(token) {
             dispatch(logoutUserSuccess());
           })
           .catch(() => {
-            message.success('A bug has occured while trying to log you out. Please try again later!');
+            message.error('A bug has occured while trying to log you out. Please try again later!');
           });
     }
 }
 
-export function generateDirections(google, coords) {
-    return async (dispatch) => {        
-        const DirectionsService = new google.maps.DirectionsService();
-        DirectionsService.route({
-        origin: new google.maps.LatLng(coords.latitude, coords.longitude),
-        destination: new google.maps.LatLng(41.8525800, -87.6514100),
-        waypoints: [
-                {
-                    location: new google.maps.LatLng(41.8507300, -87.6512600)
-                },
-                {
-                    location: new google.maps.LatLng(41.8525800, -87.6514100)
-                }
-        ],
-        travelMode: google.maps.TravelMode.WALKING,
-        }, (result, status) => {
-            if (status === google.maps.DirectionsStatus.OK) {
-                dispatch(genDirections(result));
-            } else {
-                console.error(`error fetching directions ${result}`);
-            }
+export function generateDirections(coords, range, category) {
+    return async (dispatch) => {
+        const hide = message.loading('Creating a rally..', 0);
+        const instance = axios.create({
+            baseURL: '/',
+            headers: {'Authorization': `Bearer ${store.getState().userReducer.user.token}`}
         });
+        //${store.getState().userReducer.user.token}
         
+        var params = new URLSearchParams();
+        params.append('lat', coords.latitude);
+        params.append('lng', coords.longitude);
+        params.append('range', range);
+        params.append('category', category);
+        const payload = await instance.post('/map/gencoords', params);
+        
+        if (payload.data.data.length == 5) {
+            dispatch(addActivitiesSuccess(payload.data.data));
+            console.log(new google.maps.LatLng(payload.data.data[4].coords[1]));
+            const DirectionsService = new google.maps.DirectionsService();
+            DirectionsService.route({
+            origin: new google.maps.LatLng(coords.latitude, coords.longitude),
+            destination: new google.maps.LatLng(payload.data.data[4].coords[1], payload.data.data[4].coords[0]),
+            waypoints: [
+                    {
+                        location: new google.maps.LatLng(payload.data.data[0].coords[1], payload.data.data[0].coords[0])
+                    },
+                    {
+                        location: new google.maps.LatLng(payload.data.data[1].coords[1], payload.data.data[1].coords[0])
+                    },
+                    {
+                        location: new google.maps.LatLng(payload.data.data[2].coords[1], payload.data.data[2].coords[0])
+                    },
+                    {
+                        location: new google.maps.LatLng(payload.data.data[3].coords[1], payload.data.data[3].coords[0])
+                    }
+            ],
+            travelMode: google.maps.TravelMode.WALKING,
+            optimizeWaypoints: true,
+            }, (result, status) => {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    console.log(result);
+                    dispatch(genDirections(result));
+                    setTimeout(hide, 0);
+                } else {
+                    console.error(`error fetching directions ${result}`);
+                }
+            });
+        }
+        else {
+            setTimeout(hide, 0);
+            message.error('Could not generate a rally with those parameters, try changing them!');
+        }
     }
 }
 

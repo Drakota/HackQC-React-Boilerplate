@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Card, Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
-var hide = null;
 
 class LoginPage extends Component {
 
@@ -34,6 +32,7 @@ class LoginPage extends Component {
                 <div className={"login-filter"}/>
                 <Card className={"login-card"}>
                     eGOlogie
+                    <div className="handle"></div>
                     <hr/>
                     <br/>
                     <Form onSubmit={this.handleSubmit} className="">
@@ -58,7 +57,6 @@ class LoginPage extends Component {
                         })(
                             <Checkbox>Remember me</Checkbox>
                         )}
-                        <a className="login-form-forgot" href="">Forgot password</a>
                         <Button loading={this.props.loginPending} type="primary" htmlType="submit" className="login-form-button">
                             Log in
                         </Button>
