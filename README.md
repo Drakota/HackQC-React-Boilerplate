@@ -6,7 +6,7 @@
 
 eGOlogic application's Front End
 
-![](https://thumbs.gfycat.com/SharpFlimsyDoe-max-14mb.gif)
+<img src="./preview.gif" width="400">
 
 ## Authors
 
