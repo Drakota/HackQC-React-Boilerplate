@@ -2,7 +2,7 @@
   "name": "hackqc-react-boilerplate",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://10.212.32.61:3000/",
+  "proxy": "https://egologic.herokuapp.com/",
   "dependencies": {
     "antd": "^3.5.0",
     "axios": "^0.18.0",

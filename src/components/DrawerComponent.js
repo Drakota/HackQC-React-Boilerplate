@@ -28,7 +28,11 @@ class DrawerComponent extends Component {
                 <div className={"handle"}></div>
                 <img className={"current-image"} src={this.props.current_activity.info.image} />
                 <span className={"current-address"}>{this.props.current_activity.info.address}</span>
-                <Button type="primary" onClick={this.props.readyRally} className="current-next-button greenButton">Next</Button>  
+                {this.props.finishButton() ? (
+                    <Button type="primary" onClick={this.props.readyRally} className={"current-next-button greenButton"}>Finish</Button>  
+                ) : (
+                    <Button type="primary" onClick={this.props.readyRally} className={"current-next-button greenButton"}>Next</Button>  
+                )}
             </div>
         );
     }
@@ -76,10 +80,14 @@ class DrawerComponent extends Component {
                     <div className={"handle-drawer"}></div>
                     <img className={"current-image-drawer"} src={this.props.current_activity.info.image} />
                     <span className={"current-address-drawer"}>{this.props.current_activity.info.address}</span>
-                    <Alert className={"alert-drawer"} message="Tip:" description={_.sample(GoodActions.data)} type="info" showIcon />
+                    <Alert className={"alert-drawer"} message="Tip:" description={_.sample(GoodActions.data)} type="info" />
                     <Progress className={"progress-drawer"} type="circle" percent={this.props.progress} />
-                    <Button type="danger" onClick={this.props.cancelRally} className="current-next-button-drawer">Cancel</Button> 
-                    <Button type="primary" onClick={this.props.readyRally} className="current-next-button-drawer greenButton">Next</Button>   
+                    <Button type="danger" onClick={this.props.cancelRally} className={"current-next-button-drawer"}>Cancel</Button> 
+                    {this.props.finishButton() ? (
+                        <Button type="primary" onClick={this.props.readyRally} className={"current-next-button-drawer greenButton"}>Finish</Button>   
+                    ) : (
+                        <Button type="primary" onClick={this.props.readyRally} className={"current-next-button-drawer greenButton"}>Next</Button>    
+                    )}
                 </Drawer>
             )}
         </Fragment>

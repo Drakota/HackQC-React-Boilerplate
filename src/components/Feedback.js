@@ -15,6 +15,7 @@ class Feedback extends React.Component {
           visible={visible}
           title="Feedback"
           onOk={this.props.handleOk}
+          className={"modal-feedback"}
           onCancel={this.props.handleCancel}
           footer={[
             <Button key="back" onClick={this.props.handleCancel}>Return</Button>,
@@ -37,7 +38,7 @@ class Feedback extends React.Component {
             <p>How satisfied were you with the furniture in this location?</p>
                 <RadioGroup value={this.props.furnitureChoice} onChange={this.props.onChangeFurniture} defaultValue="a">
                     <RadioButton value="Very Satified">Very Satisfied</RadioButton>
-                    <RadioButton value="Statisfied">Statisfied</RadioButton>
+                    <RadioButton value="Statisfied">Satisfied</RadioButton>
                     <RadioButton value="Unsatisfied">Unsatisfied</RadioButton>
                 </RadioGroup>
             </div>
@@ -46,7 +47,7 @@ class Feedback extends React.Component {
             <p>How satisfied were you with the maintenance of this location?</p>
                 <RadioGroup value={this.props.maintenanceChoice} onChange={this.props.onChangeMaintenance} defaultValue="a">
                     <RadioButton value="Very Satified">Very Satisfied</RadioButton>
-                    <RadioButton value="Statisfied">Statisfied</RadioButton>
+                    <RadioButton value="Statisfied">Satisfied</RadioButton>
                     <RadioButton value="Unsatisfied">Unsatisfied</RadioButton>
                 </RadioGroup>
             </div>
