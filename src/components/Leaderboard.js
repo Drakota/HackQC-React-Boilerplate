@@ -37,7 +37,7 @@ class Leaderboard extends Component {
                     <source src="/Forest-Lullaby.mp4" type="video/mp4" />
                     Your browser does not support the video tag. 
                 </video>
-                <Card className="centerElement" title="Top 10" style={{ width: 300, marginTop: 35 }}>
+                <Card className="centerElement" extra={<a href="/">Back</a>} title="Top 10" style={{ width: 300, marginTop: 35 }}>
                     <p style={{textAlign: 'center'}}>{users}</p>
                 </Card>
             </div>
