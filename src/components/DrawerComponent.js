@@ -12,7 +12,17 @@ const marks = {
 
 class DrawerComponent extends Component {
   DisplayDrawer = () => {
-    if (this.props.current_activity) {
+    if (this.props.current_activity && !this.props.locationReviewed) {
+        return (
+            <div className={"bottom-drawer"} onClick={this.props.toggleDrawer}>
+                <div className={"handle"}></div>
+                <img className={"current-image"} src={this.props.current_activity.info.image} />
+                <span className={"current-address"}>{this.props.current_activity.info.address}</span>
+                <Button type="primary" onClick={this.props.reviewLocation} className={"current-next-button"}>Review</Button>  
+            </div>
+        );
+    }
+    else if (this.props.current_activity) {
         return (
             <div className={"bottom-drawer"} onClick={this.props.toggleDrawer}>
                 <div className={"handle"}></div>

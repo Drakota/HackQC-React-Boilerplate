@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import axios from 'axios';
 import { message } from 'antd';
+import { toggleHideModalFeedback } from '../actions/index';
 import Feedback from '../components/Feedback';
 
 
 
-class LoginPageContainer extends Component {
+class FeedbackContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {visible: this.props.visible, address: this.props.address, wasteChoice: '', furnitureChoice: '', maintenanceChoice: ''};
@@ -34,19 +35,19 @@ class LoginPageContainer extends Component {
                 });
 
                 var params1 = new URLSearchParams();
-                params1.append('address', this.state.address);
+                params1.append('address', this.props.address);
                 params1.append('question', 'What was the quantity of waste on the ground?');
                 params1.append('answer', this.state.wasteChoice);
                 var data1 = await instance.post('/feedbacks/store', params1);
 
                 var params2 = new URLSearchParams();
-                params2.append('address', this.state.address);
+                params2.append('address', this.props.address);
                 params2.append('question', 'How satisfied were you with the furniture in this location?');
                 params2.append('answer', this.state.furnitureChoice);
                 var data2 = await instance.post('/feedbacks/store', params2);
 
                 var params3 = new URLSearchParams();
-                params3.append('address', this.state.addresss);
+                params3.append('address', this.props.addresss);
                 params3.append('question', 'How satisfied were you with the maintenance of this location?');
                 params3.append('answer', this.state.maintenanceChoice);
                 var data3 = await instance.post('/feedbacks/store', params3);
@@ -56,9 +57,7 @@ class LoginPageContainer extends Component {
                     maintenanceChoice: ''
                 });
                 message.success('Thank you for your feedback!');
-                this.setState({
-                    visible: false
-                });
+                this.props.toggleHideModalFeedback(false);
             }
             catch(e) {
                 message.error('An error occured. Please try again later.')
@@ -70,7 +69,7 @@ class LoginPageContainer extends Component {
     }
 
     handleCancel = (e) => {
-        this.setState({ visible: false });
+        this.props.toggleHideModalFeedback(false);
     }
 
     render() { 
@@ -81,7 +80,10 @@ class LoginPageContainer extends Component {
                 onChangeMaintenance={this.onChangeMaintenance} 
                 handleOk={this.handleSubmit} 
                 handleCancel={this.handleCancel} 
-                visible={this.state.visible}
+                visible={this.props.visibility}
+                maintenanceChoice={this.state.maintenanceChoice}
+                wasteChoice={this.state.wasteChoice}
+                furnitureChoice={this.state.furnitureChoice}
             />
         );
     }
@@ -90,13 +92,15 @@ class LoginPageContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         user: state.userReducer.user,
+        address: state.activitiesReducer.current_activity,
+        visibility: state.activitiesReducer.modalVisibility
     };
 }
  
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        toggleHideModalFeedback: (bool) => dispatch(toggleHideModalFeedback(bool))
     };
 }
 
-export default  connect(mapStateToProps, mapDispatchToProps)(LoginPageContainer);
+export default  connect(mapStateToProps, mapDispatchToProps)(FeedbackContainer);

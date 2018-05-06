@@ -140,7 +140,7 @@ body {
   margin-top: 15vh;
   width: 90vw;
   max-width: 700px;
-  height: 50vh;
+  max-height: 55vh;
 }
 
 .signUpButton {
@@ -310,9 +310,9 @@ body {
   padding-left: 0;
 }
 
-.ant-card-head-title {
+/* .ant-card-head-title {
   text-align: center;
-}
+} */
 
 .leaderboardLink {
   color: rgba(0, 0, 0, 0.65);
