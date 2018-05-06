@@ -140,6 +140,8 @@ body {
   background-color: rgba(255,255,255,0.9);
   margin-top: 15vh;
   width: 90vw;
+  max-width: 700px;
+  height: 50vh;
 }
 
 .signUpButton {
@@ -208,4 +210,11 @@ body {
 
 .map-element {
   height: calc(100vh - 75px);
+}
+
+.handle {
+  border-radius: 15px;
+  background: #eef1f3;
+  height: 5px;
+  width: 35px;
 }

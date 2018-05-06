@@ -79,7 +79,6 @@ class MainPage extends Component {
                             onClick={this.props.toggleSidebar}
                         />
                     </Header>
-                    <FeedbackContainer visible={true} address='123 ta mere est gentille' />
                     <MapContainer />
                     {this.showCreateRally()}
                     <Drawer
