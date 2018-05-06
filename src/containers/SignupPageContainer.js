@@ -17,15 +17,8 @@ class SignupPageContainer extends Component {
         this.setState({password: event.target.value});
     }
 
-    handleSubmit = () => {
-        if (this.state.email && this.state.password) {
-            const email = this.state.email;
-            const password = this.state.password;
-            this.props.signupUser({ email, password });
-        }
-        else {
-            console.log('error');
-        }
+    signupUser = (values) => {
+        this.props.signupUser(values);
     }
 
     render() { 
@@ -33,7 +26,7 @@ class SignupPageContainer extends Component {
             <SignupPage
                 handleEmailChange={this.handleEmailChange}
                 handlePasswordChange={this.handlePasswordChange}
-                handleSubmit={this.handleSubmit}
+                handleSubmit={this.signupUser}
              />
         );
     }
