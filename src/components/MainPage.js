@@ -25,6 +25,12 @@ class MainPage extends Component {
                         <p style={{ textAlign: 'center', marginTop: 15 }}>Welcome {this.props.user.user.firstName}!</p>
                     </Layout>
                     <Layout>
+                       <a href="/leaderboard" className="leaderboardLink" style={{ textAlign: 'center', backgroundColor: 'white', marginBottom: 0, marginTop: -15 }}>
+                       <Icon style={{ paddingTop: 20, paddingBottom: 20, backgroundColor: 'white', color: 'black', marginRight: 5 }} type="star-o" />
+                         Leaderboard
+                       </a>
+                    </Layout>
+                    <Layout>
                        <p className="logoutWrapper" onClick={this.props.logoutUser} style={{ textAlign: 'center', backgroundColor: 'white', marginBottom: 0, marginTop: -15 }}>
                        <Icon style={{ paddingTop: 20, paddingBottom: 20, backgroundColor: 'white', color: 'black', marginRight: 5 }} type="poweroff" />
                          Logout

@@ -299,3 +299,22 @@ body {
   max-height: 52%;
   word-break: break-word;
 }
+.leaderboardDiv {
+  text-align: center;
+  border-bottom: black 1px solid;
+  padding: 10px;
+}
+
+.leaderboardUl {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.ant-card-head-title {
+  text-align: center;
+}
+
+.leaderboardLink {
+  color: rgba(0, 0, 0, 0.65);
+  text-decoration: none;
+}
