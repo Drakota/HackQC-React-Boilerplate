@@ -7,6 +7,7 @@ import { configureStore } from './store';
 import { ConnectedRouter } from 'react-router-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import createHistory from 'history/createBrowserHistory';
+import { HashRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
 
 export const history = createHistory();
@@ -16,7 +17,9 @@ ReactDOM.render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
             <ConnectedRouter history={history}>
-                    <App />
+                <HashRouter>
+                    <App/>
+                </HashRouter>
             </ConnectedRouter>
         </PersistGate>
     </Provider>, 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Form, Icon, Input, Button, Checkbox, message } from 'antd';
+import { Link } from 'react-router-dom';
 const FormItem = Form.Item;
 
 class LoginPage extends Component {
@@ -59,7 +60,7 @@ class LoginPage extends Component {
                         <Button loading={this.props.loginPending} type="primary" htmlType="submit" className="login-form-button greenButton">
                             Log in
                         </Button>
-                        Or <a href="/signup">register now!</a>
+                        Or <Link to="/signup">register now!</Link>
                         </FormItem>
                     </Form>
                 </Card>

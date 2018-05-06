@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Form, Icon, Input, Button, Card } from 'antd';
+import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 
 const FormItem = Form.Item;
@@ -34,7 +35,7 @@ class SignUp extends React.Component {
                     Your browser does not support the video tag. 
         </video>
         
-        <Card className="centerElement signUpCard" title="Sign up for eGOlogic" extra={<a href="/login">Back to login</a>} bordered={true}>
+        <Card className="centerElement signUpCard" title="Sign up for eGOlogic" extra={<Link to="/login">register now!</Link>} bordered={true}>
             <Form onSubmit={this.handleSubmit} className="">
                 <FormItem>
                 {getFieldDecorator('first_name', {
