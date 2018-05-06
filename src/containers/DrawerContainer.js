@@ -13,6 +13,10 @@ class DrawerContainer extends Component {
         };
     }
 
+    handleNextClick = () => {
+        this.props.changeCurrentActivity();
+    }
+
     toggleDrawer = () => {        
         this.props.toggleDrawer(!this.props.toggle_drawer);
     }
@@ -59,6 +63,7 @@ class DrawerContainer extends Component {
                 readyRally={this.readyRally}
                 restartRally={this.restartRally}
                 cancelRally={this.cancelRally}
+                handleNextClick={this.handleNextClick}
             />
         );
     }
