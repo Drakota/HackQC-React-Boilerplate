@@ -13,17 +13,23 @@ const defaultMapOptions = {
 
 class MapComponent extends Component {
 
-    componentDidMount() {     
-        this.props.generateDirections(google, this.props.coords);
-    }
-
-    render() { 
+    render() {
+        var currentActivityCoords = null;
+        var currentActivityZoom = null;
+        if (this.props.currentActivity) {
+            var lat = this.props.currentActivity.coords[1];
+            var lng = this.props.currentActivity.coords[0];
+            currentActivityCoords = {lat, lng};
+            currentActivityZoom  = 15;
+        }
         return (
             <GoogleMap
                     {...this.props}
                     defaultOptions={defaultMapOptions}
+                    center={currentActivityCoords}
+                    zoom={currentActivityZoom}
                 >
-                {this.props.directions && <DirectionsRenderer options={{preserveViewport: false}} directions={this.props.directions} />}
+                {this.props.directions && <DirectionsRenderer directions={this.props.directions} />}
             </GoogleMap>
         )
     }
