@@ -34,7 +34,7 @@ class SignUp extends React.Component {
                     Your browser does not support the video tag. 
         </video>
         
-        <Card className="centerElement signUpCard" title="Sign up for eGOlogique" extra={<a href="/login">Back to login</a>} bordered={true}>
+        <Card className="centerElement signUpCard" title="Sign up for eGOlogic" extra={<a href="/login">Back to login</a>} bordered={true}>
             <Form onSubmit={this.handleSubmit} className="">
                 <FormItem>
                 {getFieldDecorator('first_name', {
@@ -77,7 +77,7 @@ class SignUp extends React.Component {
                 )}
                 </FormItem>
                 <FormItem>
-                <Button type="primary" htmlType="submit" className="login-form-button signUpButton">
+                <Button type="primary" htmlType="submit" className="login-form-button signUpButton greenButton">
                     Sign up
                 </Button>
                 </FormItem>
