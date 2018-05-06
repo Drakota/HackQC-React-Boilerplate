@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Drawer from 'react-drag-drawer';
 import MapContainer from '../containers/MapContainer';
 import Avatar from 'react-avatar';
 import MapComponent from './MapComponent';
 import { Button, Layout, Menu, Icon, Slider, Radio } from 'antd';
+import DrawerContainer from '../containers/DrawerContainer';
 const { Header, Sider } = Layout;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -13,47 +13,7 @@ class MainPage extends Component {
         super(props);
     }
 
-    onRadioChange = (e) => {
-        this.setState({ category: e.target.value });
-    }
-
-    onChange = (value) => {
-        this.setState({ range: value });
-    }
-
-    showCreateRally = () => {
-
-        if (this.props.activities) {
-            return (
-                <div onClick={this.props.toggleDrawer} className={"bottom-drawer"}> 
-                    <h3 style={{ textAlign: 'center', fontSize: 18 }} >Click here for details on your rally</h3>
-                </div>
-            );
-        }
-
-        return (
-            // <div onClick={this.props.toggleDrawer} className={"bottom-drawer"}> 
-            <div className={"bottom-drawer"}> 
-                <h3 style={{ textAlign: 'center', fontSize: 18 }} >Create a Rally!</h3>
-                <p style={{ textAlign: 'center' }}>Choose a range, where you want to visit and have fun! </p>
-                <div style={{ textAlign: 'center' }} >
-                    <RadioGroup onChange={this.onRadioChange} className="centerElement" defaultValue="1" size="small">
-                        <RadioButton value="1">Parks</RadioButton>
-                        <RadioButton value="2">Gardens</RadioButton>
-                        <RadioButton value="3">Ecoterritories</RadioButton>
-                        <RadioButton value="4">Collection Points</RadioButton>
-                    </RadioGroup>
-                </div>
-                <div style={{ display: 'flex' }}>
-                    <Slider style={{ flex: 2, alignSelf: 'center', marginBottom: 20, }} min={2} max={10} onChange={this.onChange}/>
-                    <Button style={{ flex: 1 }} onClick={this.test} className={"go-button"} type="primary">GO</Button>  
-                </div>
-            </div>
-        );
-    }
-
     render() { 
-        console.log(this.state);
         return (
             <Layout className="fullHeightAndWidth">
                 <Sider
@@ -84,14 +44,7 @@ class MainPage extends Component {
                         />
                     </Header>
                     <MapContainer />
-                    {this.showCreateRally()}
-                    <Drawer
-                        open={this.props.drawerIsToggled}
-                        onRequestClose={this.props.toggleDrawer}
-                        modalElementClass={'modal'}
-                    >
-                        <div>Hey Im inside the drawer!</div>
-                    </Drawer>
+                    <DrawerContainer />
                 </Layout>
             </Layout>
         )

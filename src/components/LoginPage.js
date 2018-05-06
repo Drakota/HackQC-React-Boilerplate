@@ -58,7 +58,6 @@ class LoginPage extends Component {
                         })(
                             <Checkbox>Remember me</Checkbox>
                         )}
-                        <a className="login-form-forgot" href="">Forgot password</a>
                         <Button loading={this.props.loginPending} type="primary" htmlType="submit" className="login-form-button">
                             Log in
                         </Button>
