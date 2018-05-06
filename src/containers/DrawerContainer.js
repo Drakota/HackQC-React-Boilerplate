@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import DrawerComponent from '../components/DrawerComponent';
 import { connect } from "react-redux";
+import { notification } from 'antd';
 import { toggleDrawer, generateDirections, clearActivities, clearDirections, changeCurrentActivity } from '../actions/index';
 import { geolocated } from 'react-geolocated';
+import _ from 'lodash';
 
 class DrawerContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
             category: 0,
-            range: 2
+            range: 2,
+            progress: 0
         };
+    }
+
+    componentDidMount() {
+        this.calculatePercentage();
     }
 
     toggleDrawer = () => {        
@@ -34,6 +41,7 @@ class DrawerContainer extends Component {
             range: 2,
             category: 0
         });
+        this.props.toggleDrawer();
         this.props.clearActivities();
         this.props.clearDirections();
     }
@@ -42,8 +50,43 @@ class DrawerContainer extends Component {
         this.props.generateDirections(this.props.coords, this.state.range, this.state.category);
     }
 
-    readyRally = () => {
-        this.props.changeCurrentActivity(this.props.activities[0]);
+    readyRally = (event) => {
+        event.stopPropagation();
+        if (!this.props.current_activity) {
+            this.props.changeCurrentActivity(this.props.activities[0]);
+        }
+        else {
+            const current_activity = this.props.current_activity;
+            var index = this.props.activities.findIndex(function(activity) {
+                return _.isEqual(activity, current_activity);
+            });
+            if (this.props.activities.length === index + 1) {
+                notification.open({
+                    message: 'Congratulations !',
+                    description: "You've just finished your rally, you were awarded 500 points.",
+                });
+                this.cancelRally();
+            }
+            else {
+                this.props.changeCurrentActivity(this.props.activities[index+1]);
+            }            
+            this.setState({
+                progress: ((index + 1) * 100) / 5
+            });
+        }
+    }
+
+    calculatePercentage = () => {
+        const current_activity = this.props.current_activity;
+            if (this.props.activities) {
+            var index = this.props.activities.findIndex(function(activity) {
+                return _.isEqual(activity, current_activity);
+            });
+            this.setState({
+                progress: ((index + 1) * 100) / 5
+            });
+                        
+        }
     }
 
     render() {
@@ -59,6 +102,7 @@ class DrawerContainer extends Component {
                 readyRally={this.readyRally}
                 restartRally={this.restartRally}
                 cancelRally={this.cancelRally}
+                progress={this.state.progress}
             />
         );
     }

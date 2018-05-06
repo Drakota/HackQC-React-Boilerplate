@@ -1,19 +1,24 @@
 import React, { Component, Fragment } from 'react';
-import { Button, Layout, Menu, Icon, Slider, Radio } from 'antd';
+import { Button, Layout, Menu, Icon, Slider, Radio, Progress, Alert } from 'antd';
 import Drawer from 'react-drag-drawer';
+import GoodActions from './good-actions.json';
+import _ from 'lodash';
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
+const marks = {
+    2: '2 KM',
+    10: '10 KM'
+};
 
 class DrawerComponent extends Component {
-
   DisplayDrawer = () => {
     if (this.props.current_activity) {
         return (
-            <div className={"bottom-drawer"}>
+            <div className={"bottom-drawer"} onClick={this.props.toggleDrawer}>
                 <div className={"handle"}></div>
                 <img className={"current-image"} src={this.props.current_activity.info.image} />
                 <span className={"current-address"}>{this.props.current_activity.info.address}</span>
-                <Button type="primary" className={"current-next-button"}>Next</Button>  
+                <Button type="primary" onClick={this.props.readyRally} className={"current-next-button"}>Next</Button>  
             </div>
         );
     }
@@ -40,25 +45,33 @@ class DrawerComponent extends Component {
                     </RadioGroup>
                 </div>
                 <div style={{ display: 'flex' }}>
-                    <Slider style={{ flex: 2, alignSelf: 'center', marginBottom: 20, }} defaultValue={2} min={2} max={10} onChange={this.props.createRangeChange}/>
-                    <Button style={{ flex: 1 }} onClick={this.props.createOnClick} className={"go-button"} type="primary">GO</Button>  
+                    <Slider style={{ flex: 2, alignSelf: 'center', margin: 20, }} marks={marks} defaultValue={2} min={2} max={10} onChange={this.props.createRangeChange}/>
+                    <Button style={{ flex: 1 }} onClick={this.props.createOnClick} className={"go-button"} type="primary">Go</Button>  
                 </div>
             </div>
         );
     }
   }
 
-  render() {
+  render() {      
     return (
         <Fragment>
             <this.DisplayDrawer/>
-            <Drawer
-                open={this.props.drawerIsToggled}
-                onRequestClose={this.props.toggleDrawer}
-                modalElementClass={'modal'}
-            >
-                <div>Hey Im inside the drawer!</div>
-            </Drawer>
+            {this.props.current_activity && (
+                <Drawer
+                    open={this.props.drawerIsToggled}
+                    onRequestClose={this.props.toggleDrawer}
+                    modalElementClass={'modal'}
+                >
+                    <div className={"handle-drawer"}></div>
+                    <img className={"current-image-drawer"} src={this.props.current_activity.info.image} />
+                    <span className={"current-address-drawer"}>{this.props.current_activity.info.address}</span>
+                    <Alert className={"alert-drawer"} message="Tip:" description={_.sample(GoodActions.data)} type="info" showIcon />
+                    <Progress className={"progress-drawer"} type="circle" percent={this.props.progress} />
+                    <Button type="danger" onClick={this.props.cancelRally} className={"current-next-button-drawer"}>Cancel</Button> 
+                    <Button type="primary" onClick={this.props.readyRally} className={"current-next-button-drawer"}>Next</Button>   
+                </Drawer>
+            )}
         </Fragment>
     );
   }

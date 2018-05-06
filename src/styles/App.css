@@ -111,7 +111,6 @@ body {
   font-size: 1.6rem;
   width: 76rem;
   max-width: 90%;
-  display: flex;
   justify-content: space-between;
   flex-direction: column;
   z-index: 15;
@@ -253,4 +252,50 @@ body {
   height: 5px;
   width: 35px;
   margin: 0 auto;
+}
+
+.current-address-drawer {
+  font-size: 13px;
+  max-width: 200px;
+  margin: 15px;
+  word-wrap: break-word;
+  display: inline-block;
+}
+
+.current-image-drawer {
+  max-width: 50px;
+  margin-left: 15px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+}
+
+.current-next-button-drawer {
+  height: 50px;
+  margin: 0 auto;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  width: 95%;
+}
+
+.handle-drawer {
+  border-radius: 15px;
+  background: #eef1f3;
+  height: 5px;
+  width: 35px;
+  margin: 0 auto;
+  margin-top: 6px;
+}
+
+.progress-drawer {
+  margin: 20px;
+  margin-bottom: 45px; 
+  float: right;
+}
+
+.alert-drawer {
+  float: left;
+  margin: 10px;
+  max-width: 52%;
+  max-height: 52%;
+  word-break: break-word;
 }
