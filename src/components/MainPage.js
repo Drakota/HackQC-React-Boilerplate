@@ -4,6 +4,7 @@ import Avatar from 'react-avatar';
 import { Button, Layout, Menu, Icon, Slider, Radio } from 'antd';
 import FeedbackContainer from '../containers/FeedbackContainer';
 import DrawerContainer from '../containers/DrawerContainer';
+import { Link } from 'react-router-dom';
 import Feedback from './Feedback';
 const { Header, Sider } = Layout;
 const RadioButton = Radio.Button;
@@ -26,10 +27,10 @@ class MainPage extends Component {
                         <p style={{ textAlign: 'center', marginTop: 15 }}>Welcome {this.props.user.user.firstName}!</p>
                     </Layout>
                     <Layout>
-                       <a href="/leaderboard" className="leaderboardLink" style={{ textAlign: 'center', backgroundColor: 'white', marginBottom: 0, marginTop: -15 }}>
+                       <Link className="leaderboardLink" style={{ textAlign: 'center', backgroundColor: 'white', marginBottom: 0, marginTop: -15 }} to="/leaderboard">
                        <Icon style={{ paddingTop: 20, paddingBottom: 20, backgroundColor: 'white', color: 'black', marginRight: 5 }} type="star-o" />
                          Leaderboard
-                       </a>
+                       </Link>
                     </Layout>
                     <Layout>
                        <p className="logoutWrapper" onClick={this.props.logoutUser} style={{ textAlign: 'center', backgroundColor: 'white', marginBottom: 0, marginTop: -15 }}>

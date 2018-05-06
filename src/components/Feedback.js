@@ -19,7 +19,7 @@ class Feedback extends React.Component {
           onCancel={this.props.handleCancel}
           footer={[
             <Button key="back" onClick={this.props.handleCancel}>Return</Button>,
-            <Button key="submit" type="primary" loading={loading} onClick={this.props.handleOk}>
+            <Button key="submit" className="greenButton" type="primary" loading={loading} onClick={this.props.handleOk}>
               Submit
             </Button>,
           ]}

@@ -112,7 +112,8 @@ export function signupUser(values) {
         axios.post('/users', params)
             .then((data) => {
                 message.success('You are signed up and logged in!');
-                dispatch(signupUserSuccess(data));
+                console.log(data);
+                dispatch(signupUserSuccess(data.data));
             })
             .catch((error) => {
                 if(error.response.data.errors.email) {
