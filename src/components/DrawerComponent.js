@@ -18,7 +18,7 @@ class DrawerComponent extends Component {
                 <div className={"handle"}></div>
                 <img className={"current-image"} src={this.props.current_activity.info.image} />
                 <span className={"current-address"}>{this.props.current_activity.info.address}</span>
-                <Button type="primary" onClick={this.props.reviewLocation} className={"current-next-button"}>Review</Button>  
+                <Button type="primary" onClick={this.props.reviewLocation} className="current-next-button greenButton">Review</Button>  
             </div>
         );
     }
@@ -28,7 +28,7 @@ class DrawerComponent extends Component {
                 <div className={"handle"}></div>
                 <img className={"current-image"} src={this.props.current_activity.info.image} />
                 <span className={"current-address"}>{this.props.current_activity.info.address}</span>
-                <Button type="primary" onClick={this.props.readyRally} className={"current-next-button"}>Next</Button>  
+                <Button type="primary" onClick={this.props.readyRally} className="current-next-button greenButton">Next</Button>  
             </div>
         );
     }
@@ -56,7 +56,7 @@ class DrawerComponent extends Component {
                 </div>
                 <div style={{ display: 'flex' }}>
                     <Slider style={{ flex: 2, alignSelf: 'center', margin: 20, }} marks={marks} defaultValue={2} min={2} max={10} onChange={this.props.createRangeChange}/>
-                    <Button style={{ flex: 1 }} onClick={this.props.createOnClick} className={"go-button"} type="primary">Go</Button>  
+                    <Button style={{ flex: 1 }} onClick={this.props.createOnClick} className="go-button greenButton" type="primary">Go</Button>  
                 </div>
             </div>
         );
@@ -78,8 +78,8 @@ class DrawerComponent extends Component {
                     <span className={"current-address-drawer"}>{this.props.current_activity.info.address}</span>
                     <Alert className={"alert-drawer"} message="Tip:" description={_.sample(GoodActions.data)} type="info" showIcon />
                     <Progress className={"progress-drawer"} type="circle" percent={this.props.progress} />
-                    <Button type="danger" onClick={this.props.cancelRally} className={"current-next-button-drawer"}>Cancel</Button> 
-                    <Button type="primary" onClick={this.props.readyRally} className={"current-next-button-drawer"}>Next</Button>   
+                    <Button type="danger" onClick={this.props.cancelRally} className="current-next-button-drawer">Cancel</Button> 
+                    <Button type="primary" onClick={this.props.readyRally} className="current-next-button-drawer greenButton">Next</Button>   
                 </Drawer>
             )}
         </Fragment>

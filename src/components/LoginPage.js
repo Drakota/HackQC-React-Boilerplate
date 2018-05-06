@@ -56,7 +56,7 @@ class LoginPage extends Component {
                         })(
                             <Checkbox>Remember me</Checkbox>
                         )}
-                        <Button loading={this.props.loginPending} type="primary" htmlType="submit" className="login-form-button">
+                        <Button loading={this.props.loginPending} type="primary" htmlType="submit" className="login-form-button greenButton">
                             Log in
                         </Button>
                         Or <a href="/signup">register now!</a>
