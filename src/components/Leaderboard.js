@@ -6,7 +6,7 @@ import { Card } from 'antd';
 class Leaderboard extends Component {
     constructor(props) {
         super(props);
-        this.state = { data: '' }
+        this.state = { data: '', currentUser: {} }
     }
 
     componentWillMount() {
@@ -18,7 +18,7 @@ class Leaderboard extends Component {
 
         var data = instance.get('/users/leaderboard')
             .then((data) => {
-                this.setState({ data: data.data.users });
+                this.setState({ data: data.data.users, currentUser: data.data.currentUser });
             });
     }
 
@@ -28,8 +28,10 @@ class Leaderboard extends Component {
         }
     }
 
+    
+    
     render = () => {
-        console.log(this.state); 
+        console.log(this.state);
         const users = this.renderObjects();
         return ( 
             <div>
@@ -39,6 +41,7 @@ class Leaderboard extends Component {
                 </video>
                 <Card className="centerElement" extra={<a href="/">Back</a>} title="Top 10" style={{ width: 300, marginTop: 35 }}>
                     <p style={{textAlign: 'center'}}>{users}</p>
+                    <p style={{textAlign: 'center', fontWeight: 'bold'}}>{this.state.currentUser.position}. {this.state.currentUser.firstName} {this.state.currentUser.lastName} : {this.state.currentUser.points} points</p>
                 </Card>
             </div>
          );
