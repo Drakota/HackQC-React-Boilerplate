@@ -1,6 +1,5 @@
 /* global google */
 import axios from 'axios';
-import { history } from '../index';
 import { message } from 'antd';
 import { store } from '../index';
 

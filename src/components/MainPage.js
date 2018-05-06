@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import MapContainer from '../containers/MapContainer';
 import Avatar from 'react-avatar';
-import MapComponent from './MapComponent';
 import { Button, Layout, Menu, Icon, Slider, Radio } from 'antd';
+import FeedbackContainer from '../containers/FeedbackContainer';
 import DrawerContainer from '../containers/DrawerContainer';
 const { Header, Sider } = Layout;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
 class MainPage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() { 
         return (
             <Layout className="fullHeightAndWidth">

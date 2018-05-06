@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Card, Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
-var hide = null;
 
 class LoginPage extends Component {
 
@@ -34,6 +32,7 @@ class LoginPage extends Component {
                 <div className={"login-filter"}/>
                 <Card className={"login-card"}>
                     eGOlogie
+                    <div className="handle"></div>
                     <hr/>
                     <br/>
                     <Form onSubmit={this.handleSubmit} className="">

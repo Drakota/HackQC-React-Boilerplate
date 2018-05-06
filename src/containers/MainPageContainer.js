@@ -5,10 +5,6 @@ import { toggleDrawer, toggleSidebar, logoutUser } from '../actions/index';
 import { generateDirections } from '../actions';
 
 class MainPageContainer extends Component {
-    constructor(props) {
-        super(props);
-     
-    }
 
     toggleSidebar = () => {
         this.props.toggleSidebar(!this.props.toggle_sidebar)

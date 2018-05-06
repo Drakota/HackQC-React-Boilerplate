@@ -12,9 +12,6 @@ const defaultMapOptions = {
 };
 
 class MapComponent extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         var currentActivityCoords = null;
