@@ -5,10 +5,6 @@ import { toggleDrawer, toggleSidebar, logoutUser } from '../actions/index';
 
 
 class MainPageContainer extends Component {
-    constructor(props) {
-        super(props);
-     
-    }
 
     toggleDrawer = () => {
         this.props.toggleDrawer(!this.props.toggle_drawer)

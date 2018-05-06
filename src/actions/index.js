@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { history } from '../index';
 import { message } from 'antd';
 
 export const loginUserSuccess = (user) => ({

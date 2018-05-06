@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import Drawer from 'react-drag-drawer';
 import MapContainer from '../containers/MapContainer';
 import Avatar from 'react-avatar';
-import MapComponent from './MapComponent';
-import { Button, Layout, Menu, Icon, Slider, Radio } from 'antd';
+import FeedbackContainer from '../containers/FeedbackContainer';
+import { Button, Layout, Icon, Slider, Radio } from 'antd';
 const { Header, Sider } = Layout;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
 class MainPage extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     onRadioChange = (e) => {
         this.setState({ category: e.target.value });
@@ -38,10 +35,9 @@ class MainPage extends Component {
                 <p style={{ textAlign: 'center' }}>Choose a range, where you want to visit and have fun! </p>
                 <div style={{ textAlign: 'center' }} >
                     <RadioGroup onChange={this.onRadioChange} className="centerElement" defaultValue="1" size="small">
-                        <RadioButton value="1">Parks</RadioButton>
-                        <RadioButton value="2">Gardens</RadioButton>
-                        <RadioButton value="3">Ecoterritories</RadioButton>
-                        <RadioButton value="4">Collection Points</RadioButton>
+                        <RadioButton value="0">Parks</RadioButton>
+                        <RadioButton value="1">Ecoterritories</RadioButton>
+                        <RadioButton value="2">Green Spaces</RadioButton>
                     </RadioGroup>
                 </div>
                 <div style={{ display: 'flex' }}>
@@ -83,6 +79,7 @@ class MainPage extends Component {
                             onClick={this.props.toggleSidebar}
                         />
                     </Header>
+                    <FeedbackContainer visible={true} address='123 ta mere est gentille' />
                     <MapContainer />
                     {this.showCreateRally()}
                     <Drawer
